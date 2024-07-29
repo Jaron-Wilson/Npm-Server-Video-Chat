@@ -1,0 +1,13 @@
+{
+    "name": "server",
+    "version": "1.0.0",
+    "description": "Simple Real-Time Chat App",
+    "main": "video/server-index.js",
+    "scripts": {
+      "start": "node video/server-index.js"
+    },
+    "dependencies": {
+      "express": "^4.18.2",
+      "socket.io": "^4.6.0"
+    }
+  }

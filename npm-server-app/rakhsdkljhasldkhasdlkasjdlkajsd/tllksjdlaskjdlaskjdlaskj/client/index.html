@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Real-Time Chat</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Real-Time Chat</h1>
+  <div id="chat-container">
+    </div>
+  <input type="text" id="message-input" placeholder="Type your message...">
+  <button onclick="sendMessage()">Send</button>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const chatContainer = document.getElementById('chat-container');
+    const messageInput = document.getElementById('message-input');
+
+    const socket = io();
+
+    function sendMessage() {
+      const message = messageInput.value;
+      if (message.trim() !== '') {
+        socket.emit('chat message', message);
+        messageInput.value = '';
+      }
+    }
+
+    socket.on('chat message', (msg) => {
+      const messageElement = document.createElement('p');
+      messageElement.textContent = msg;
+      chatContainer.appendChild(messageElement);
+    });
+  </script>
+</body>
+</html>
